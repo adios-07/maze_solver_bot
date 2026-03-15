@@ -1,0 +1,50 @@
+/**/controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_base_controller:
+      type: diff_drive_controller/DiffDriveController
+
+/**/diff_drive_base_controller:
+  ros__parameters:
+    left_wheel_names: ["front_left_wheel_joint", "back_left_wheel_joint"]
+    right_wheel_names: ["front_right_wheel_joint", "back_right_wheel_joint"]
+
+    wheel_separation: 0.26
+    wheel_radius: 0.03
+
+    wheel_separation_multiplier: 1.0
+    left_wheel_radius_multiplier: 1.0
+    right_wheel_radius_multiplier: 1.0
+
+    publish_rate: 50.0
+    odom_frame_id: odom/unfiltered
+    base_frame_id: base_footprint
+    pose_covariance_diagonal: [0.001, 0.001, 0.0, 0.0, 0.0, 0.01]
+    twist_covariance_diagonal: [0.001, 0.0, 0.0, 0.0, 0.0, 0.01]
+
+    open_loop: false
+    enable_odom_tf: false
+    position_feedback: true
+
+    cmd_vel_timeout: 0.5
+    publish_limited_velocity: true   # enables ~/cmd_vel_out topic for debugging
+    use_stamped_vel: true
+    velocity_rolling_window_size: 10
+
+    # Velocity and acceleration limits (Jazzy style)
+    # Set to .NAN to disable a limit entirely
+    linear.x.max_velocity: .NAN          # m/s  — uncapped, set a value like 1.0 to cap
+    linear.x.min_velocity: .NAN          # defaults to -max_velocity if unset
+    linear.x.max_acceleration: .NAN      # m/s² — uncapped
+    linear.x.max_deceleration: .NAN
+    linear.x.max_jerk: .NAN
+
+    angular.z.max_velocity: .NAN         # rad/s — uncapped
+    angular.z.min_velocity: .NAN
+    angular.z.max_acceleration: .NAN
+    angular.z.max_deceleration: .NAN
+    angular.z.max_jerk: .NAN
