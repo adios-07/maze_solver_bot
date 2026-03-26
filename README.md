@@ -51,7 +51,6 @@ sudo apt install -y \
   ros-jazzy-navigation2 \
   ros-jazzy-slam-toolbox \
   ros-jazzy-robot-localization \
-  ros-jazzy-plotjuggler-ros
 ```
 
 ---
